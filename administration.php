@@ -39,7 +39,7 @@
 <?php
   }
 ?>
-    <a class="btn btn-default pull-right" href="gestion.php">Créer nouveau</a>
+    <a class="btn btn-default pull-right" href="gestion1.php">Créer nouveau</a>
     </tbody>
   </table>
 </div>

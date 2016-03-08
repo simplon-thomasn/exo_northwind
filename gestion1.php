@@ -2,25 +2,20 @@
   include ('includes/header.php');
   include ('includes/fonctions.php');
   include ('includes/messages.php');
-
-  $employees = affiche_empl($_GET['id']);
-
-  foreach ($employees as $employee)
-  {
 ?>
 
 <div class="row">
-  <form class="form-horizontal col-lg-6" method="POST">
+  <form class="form-horizontal col-lg-6" method="POST" action="administration.php">
 
   <div class="form-group">
-    <legend><?php echo ' '.$employee['LastName'].' '.$employee['FirstName']?></legend>
+    <legend>Nouvel-lle employé-e</legend>
   </div>
 
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Nom</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="nom" name=" nom" value="<?php echo $employee['LastName']?>">
+        <input type="text" class="form-control input-sm" id="nom" name=" nom">
       </div>
     </div>
   </div>
@@ -29,7 +24,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Prénom</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="prenom" name="prenom" value="<?php echo $employee['FirstName']?>">
+        <input type="text" class="form-control input-sm" id="prenom" name="prenom">
       </div>
     </div>
   </div>
@@ -38,7 +33,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Titre</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="titre" name="titre" value="<?php echo $employee['Title']?>">
+        <input type="text" class="form-control input-sm" id="titre" name="titre">
       </div>
     </div>
   </div>
@@ -47,7 +42,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Civilité</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="civilite" name="civilite" value="<?php echo $employee['TitleOfCourtesy']?>">
+        <input type="text" class="form-control input-sm" id="civilite" name="civilite">
       </div>
     </div>
   </div>
@@ -56,7 +51,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Date de naissance</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="naissance" name="naissance" value="<?php echo $employee['BirthDate']?>">
+        <input type="text" class="form-control input-sm" id="naissance" name="naissance">
       </div>
     </div>
   </div>
@@ -65,7 +60,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Date embauche</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="embauche" name="embauche" value="<?php echo $employee['HireDate']?>">
+        <input type="text" class="form-control input-sm" id="embauche" name="embauche">
       </div>
     </div>
   </div>
@@ -74,7 +69,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Adresse</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="adresse" name="adresse" value="<?php echo $employee['Address']?>">
+        <input type="text" class="form-control input-sm" id="adresse" name="adresse">
       </div>
     </div>
   </div>
@@ -83,7 +78,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Ville</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="ville" name="ville" value="<?php echo $employee['City']?>">
+        <input type="text" class="form-control input-sm" id="ville" name="ville">
       </div>
     </div>
   </div>
@@ -92,7 +87,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Region</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="region" name="region" value="<?php echo $employee['Region']?>">
+        <input type="text" class="form-control input-sm" id="region" name="region">
       </div>
     </div>
   </div>
@@ -101,7 +96,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Code postal</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="codepost" name="codepost" value="<?php echo $employee['PostalCode']?>">
+        <input type="text" class="form-control input-sm" id="codepost" name="codepost">
       </div>
     </div>
   </div>
@@ -110,7 +105,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Pays</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="pays" name="pays" value="<?php echo $employee['Country']?>">
+        <input type="text" class="form-control input-sm" id="pays" name="pays">
       </div>
     </div>
   </div>
@@ -119,7 +114,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Téléphone</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="telephone" name="telephone" value="<?php echo $employee['HomePhone']?>">
+        <input type="text" class="form-control input-sm" id="telephone" name="telephone">
       </div>
     </div>
   </div>
@@ -128,7 +123,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Extension</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="extension" name="extension" value="<?php echo $employee['Extension']?>">
+        <input type="text" class="form-control input-sm" id="extension" name="extension">
       </div>
     </div>
   </div>
@@ -137,7 +132,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Notes</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="notes" name="notes" value="<?php echo $employee['Notes']?>">
+        <input type="text" class="form-control input-sm" id="notes" name="notes">
       </div>
     </div>
   </div>
@@ -146,7 +141,7 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Responsable</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="boss" name="boss" value="<?php echo $employee['ReportsTo']?>">
+        <input type="text" class="form-control input-sm" id="boss" name="boss">
       </div>
     </div>
   </div>
@@ -155,20 +150,16 @@
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Salaire</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="salaire" name="salaire" value="<?php echo $employee['Salary']?>">
+        <input type="text" class="form-control input-sm" id="salaire" name="salaire">
       </div>
     </div>
   </div>
 
-  <div class="form-horizontal">
-    <a class="btn btn-default pull-right" href="administration.php" onclick="modifier()">Modifier</a>
-    <a class="btn btn-default pull-right" href="administration.php" onclick="supprimer()">Supprimer</a>
-  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Créer nouveau</button>
+
   </form>
 </div>
 
 <?php
-  }
-
   include ('includes/footer.php');
 ?>

@@ -66,3 +66,33 @@
     }
 
   }
+
+  function new_empl()
+  {
+    include('./includes/connexion.php');
+
+    $req_new_empl = $connexion->prepare('
+      INSERT INTO Employees (LastName, FirstName, Title, TitleOfCourtesy, BirthDate, Hiredate, Address, City, Region, PostalCode, Country, HomePhone, Notes, ReportsTo, Salary)
+      VALUES (:nom, :prenom, :titre, :civilite, :naissance, :embauche, :adresse, :ville, :region, :codepost, :pays, :telephone, :notes, :boss, :salaire)
+      ');
+
+    $req_new_empl->execute(
+      array(
+        'nom' => $_POST['nom'],
+        'prenom' => $_POST['prenom'],
+        'titre' => $_POST['titre'],
+        'civilite' => $_POST['civilite'],
+        'naissance' => $_POST['naissance'],
+        'embauche' => $_POST['embauche'],
+        'adresse' => $_POST['adresse'],
+        'ville' => $_POST['ville'],
+        'region' => $_POST['region'],
+        'codepost' => $_POST['codepost'],
+        'pays' => $_POST['pays'],
+        'telephone' => $_POST['telephone'],
+        'extension' => $_POST['extension'],
+        'notes' => $_POST['notes'],
+        'boss' => $_POST['boss'],
+        'salaire' => $_POST['salaire']));
+
+  }
