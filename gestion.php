@@ -11,9 +11,11 @@
 
 <div class="row">
   <form class="form-horizontal col-lg-6" method="POST" action="administration.php">
+
   <div class="form-group">
     <legend><?php echo ' '.$employee['LastName'].' '.$employee['FirstName']?></legend>
   </div>
+
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Nom</label>
@@ -22,6 +24,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Prénom</label>
@@ -30,6 +33,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Titre</label>
@@ -38,6 +42,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Mrs / Mme</label>
@@ -46,6 +51,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Date de naissance</label>
@@ -54,30 +60,115 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="form-group">
-    <label for="select" class="col-lg-2 control-label">Select: </label>
+      <label for="text" class="col-lg-2 control-label">Date embauche</label>
       <div class="col-lg-10">
-        <select id="select" class="form-control" >
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-        </select>
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['HireDate']?>">
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <button class="pull-right btn btn-default">Envoyer</button>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Adresse</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Address']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Ville</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['City']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Region</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Region']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Code postal</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['PostalCode']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Pays</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Country']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Téléphone</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['HomePhone']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Extension</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Extension']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Notes</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Notes']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Responsable</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['ReportsTo']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="text" class="col-lg-2 control-label">Salaire</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control input-sm" id="text" value="<?php echo $employee['Salary']?>">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-horizontal">
+    <a class="btn btn-default pull-right" href="administration.php" onclick="modifier()">Modifier</a>
+    <a class="btn btn-default pull-right" href="administration.php" onclick="supprimer()">Supprimer</a>
   </div>
 </form>
 </div>
 
 <?php
   }
-?>
-    </tbody>
-  </table>
-</div>
-</div>
 
-<?php include ('includes/footer.php');?>
+  include ('includes/footer.php');
+?>
