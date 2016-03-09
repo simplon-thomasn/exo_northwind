@@ -5,7 +5,7 @@
 ?>
 
 <div class="row">
-  <form class="form-horizontal col-lg-6" method="POST" action="administration.php">
+  <form class="form-horizontal col-lg-6" method="POST" action="nouveau.php">
 
   <div class="form-group">
     <legend>Nouvel-lle employé-e</legend>
@@ -133,15 +133,6 @@
       <label for="text" class="col-lg-2 control-label">Notes</label>
       <div class="col-lg-10">
         <input type="text" class="form-control input-sm" id="notes" name="notes">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="text" class="col-lg-2 control-label">Responsable</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="boss" name="boss">
       </div>
     </div>
   </div>

@@ -14,8 +14,9 @@
     <input id="pass" name="pass" type="password" class="form-control"/>
   </div>
   <button type="submit" class="btn btn-primary btn-sm">Se connecter</button>
+  <a class="btn btn-default btn-sm" href="administration.php">Administration</a>
 </form>
 
-<a class="btn btn-default" href="administration.php">Administration</a>
+
 
 <?php include ('includes/footer.php');?>

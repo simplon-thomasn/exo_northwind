@@ -1,6 +1,10 @@
 <?php
 
-  function get_infos()
+  /**
+   * [get_infos description]
+   * @return [array] retourne les infos de l'employé connecté.
+   **/
+  function empl_cnt()
   {
     include('./includes/connexion.php');
 
@@ -33,7 +37,8 @@
     }
   }
 
-  function affiche_empl($id = null)
+
+  function empl_infos($id = null)
   {
 
     include('./includes/connexion.php');
@@ -62,18 +67,18 @@
       $employees = $req_employees->fetchAll();
 
       return $employees;
-
     }
 
   }
+
 
   function new_empl()
   {
     include('./includes/connexion.php');
 
     $req_new_empl = $connexion->prepare('
-      INSERT INTO Employees (LastName, FirstName, Title, TitleOfCourtesy, BirthDate, Hiredate, Address, City, Region, PostalCode, Country, HomePhone, Notes, ReportsTo, Salary)
-      VALUES (:nom, :prenom, :titre, :civilite, :naissance, :embauche, :adresse, :ville, :region, :codepost, :pays, :telephone, :notes, :boss, :salaire)
+      INSERT INTO Employees (LastName, FirstName, Title, TitleOfCourtesy, BirthDate, Hiredate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, Salary)
+      VALUES (:nom, :prenom, :titre, :civilite, :naissance, :embauche, :adresse, :ville, :region, :codepost, :pays, :telephone, :extension, :notes, :salaire)
       ');
 
     $req_new_empl->execute(
@@ -92,7 +97,81 @@
         'telephone' => $_POST['telephone'],
         'extension' => $_POST['extension'],
         'notes' => $_POST['notes'],
-        'boss' => $_POST['boss'],
         'salaire' => $_POST['salaire']));
+
+  }
+
+
+  function modif_empl()
+  {
+    include('./includes/connexion.php');
+
+    if ($id = $_GET['id'])
+    {
+      $id = (int)$_GET['id'];
+      //echo gettype($get_id);
+      //echo $get_id;
+
+      $req_modif_empl = $connexion->prepare('
+        UPDATE Employees
+        SET
+          LastName = :nom,
+          FirstName = :prenom,
+          Title = :titre,
+          TitleOfCourtesy = :civilite,
+          BirthDate = :naissance,
+          Hiredate = :embauche,
+          Address = :adresse,
+          City = :ville,
+          Region = :region,
+          PostalCode = :codepost,
+          Country = :pays,
+          HomePhone = :telephone,
+          Extension = :extension,
+          Notes = :notes,
+          Salary = :salaire
+        WHERE EmployeeId = :id');
+
+      $req_modif_empl->execute(
+        array(
+          'nom' => $_POST['nom'],
+          'prenom' => $_POST['prenom'],
+          'titre' => $_POST['titre'],
+          'civilite' => $_POST['civilite'],
+          'naissance' => $_POST['naissance'],
+          'embauche' => $_POST['embauche'],
+          'adresse' => $_POST['adresse'],
+          'ville' => $_POST['ville'],
+          'region' => $_POST['region'],
+          'codepost' => $_POST['codepost'],
+          'pays' => $_POST['pays'],
+          'telephone' => $_POST['telephone'],
+          'extension' => $_POST['extension'],
+          'notes' => $_POST['notes'],
+          'salaire' => $_POST['salaire'],
+          'id' => $id));
+    }
+
+  }
+
+
+  function suppr_empl()
+  {
+    include('./includes/connexion.php');
+
+    if ($id = $_GET['id'])
+    {
+      $id = (int)$_GET['id'];
+      //echo gettype($get_id);
+      //echo $get_id;
+
+      $req_modif_empl = $connexion->prepare('
+        DELETE FROM Employees
+        WHERE EmployeeId = :id');
+
+      $req_modif_empl->execute(
+        array(
+          'id' => $id));
+    }
 
   }

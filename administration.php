@@ -3,7 +3,7 @@
   include ('includes/fonctions.php');
   include ('includes/messages.php');
 
-  $employees = affiche_empl();
+  $employees = empl_infos();
 ?>
 
 <div class="row">
@@ -20,6 +20,7 @@
         <th>Titre</th>
         <th>Ville</th>
         <th>Gestion</th>
+        <th>Suppression</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
         <td><?php echo $employee['Title']; ?></td>
         <td><?php echo $employee['City']; ?></td>
         <td><a class="btn btn-default" href="gestion.php?id=<?php echo $employee['EmployeeID'];?>">Gestion</a></td>
+        <td><a class="btn btn-default" href="suppression.php?id=<?php echo $employee['EmployeeID'];?>">Suppression</a></td>
       </tr>
 <?php
   }

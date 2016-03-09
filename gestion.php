@@ -3,17 +3,17 @@
   include ('includes/fonctions.php');
   include ('includes/messages.php');
 
-  $employees = affiche_empl($_GET['id']);
+  $employees = empl_infos($_GET['id']);
 
   foreach ($employees as $employee)
   {
 ?>
 
 <div class="row">
-  <form class="form-horizontal col-lg-6" method="POST">
+  <form class="form-horizontal col-lg-6" method="POST" action="modification.php?id=<?php echo $employee['EmployeeID'];?>">
 
   <div class="form-group">
-    <legend><?php echo ' '.$employee['LastName'].' '.$employee['FirstName']?></legend>
+    <legend><?php echo ' '.$employee['LastName'].' '.$employee['FirstName'].' - '.$_GET['id']?></legend>
   </div>
 
   <div class="row">
@@ -144,26 +144,15 @@
 
   <div class="row">
     <div class="form-group">
-      <label for="text" class="col-lg-2 control-label">Responsable</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control input-sm" id="boss" name="boss" value="<?php echo $employee['ReportsTo']?>">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
       <label for="text" class="col-lg-2 control-label">Salaire</label>
       <div class="col-lg-10">
         <input type="text" class="form-control input-sm" id="salaire" name="salaire" value="<?php echo $employee['Salary']?>">
       </div>
     </div>
   </div>
+  <button type="submit" class="btn btn-primary btn-sm pull-right">Modifier</button>
+  <a class="btn btn-default pull-right btn-sm" href="administration.php">Retour</a>
 
-  <div class="form-horizontal">
-    <a class="btn btn-default pull-right" href="administration.php" onclick="modifier()">Modifier</a>
-    <a class="btn btn-default pull-right" href="administration.php" onclick="supprimer()">Supprimer</a>
-  </div>
   </form>
 </div>
 

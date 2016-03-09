@@ -5,7 +5,7 @@
   include ('includes/fonctions.php');
   include_once ('class/Employe.class.php');
 
-  $infosEmpl = get_infos();
+  $infosEmpl = empl_cnt();
 
   $objEmpl = new Employe ($infosEmpl[0], $infosEmpl[1], $infosEmpl[2], $infosEmpl[3]);
 ?>
