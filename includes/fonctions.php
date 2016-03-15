@@ -4,7 +4,7 @@
    * [get_infos description]
    * @return [array] retourne les infos de l'employé connecté.
    **/
-  function empl_cnt()
+  function empl_cnt($inLogin, $inPass )
   {
     include('./includes/connexion.php');
 
@@ -15,21 +15,14 @@
 
     $identification->execute(
       array(
-        'login' => $_POST['login'],
-        'pass' => $_POST['pass']));
+        'login' => $inLogin,
+        'pass' => $inPass));
 
     if ($identification->rowCount() == 1)
     {
       $infosEmpl = $identification->fetch();
 
-      session_start();
-      $_SESSION['ID'] = $infosEmpl[0];
-      $_SESSION['Nom'] = $infosEmpl[1];
-      $_SESSION['Prenom'] = $infosEmpl[2];
-      $_SESSION['Titre'] = $infosEmpl[3];
-
       return $infosEmpl;
-
     }
     else
     {
@@ -47,7 +40,8 @@
     {
       $req_employees = $connexion->query('
         SELECT *
-        FROM Employees');
+        FROM Employees
+        ORDER BY ReportsTo');
 
       $employees = $req_employees->fetchAll();
 

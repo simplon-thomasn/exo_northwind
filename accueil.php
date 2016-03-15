@@ -1,13 +1,23 @@
 <?php
+  session_start();
   include ('includes/header.php');
   include ('includes/messages.php');
-  include ("includes/connexion.php");
   include ('includes/fonctions.php');
   include_once ('class/Employe.class.php');
 
-  $infosEmpl = empl_cnt();
+  if (isset($_POST['login']) && isset($_POST['pass']))
+  {
+      $infosEmpl = Employe::empl_cnt($_POST['login'], $_POST['pass']);
 
-  $objEmpl = new Employe ($infosEmpl[0], $infosEmpl[1], $infosEmpl[2], $infosEmpl[3]);
+      $objEmplConnecte = new Employe($infosEmpl[0], $infosEmpl[1], $infosEmpl[2], $infosEmpl[3]);
+      $_SESSION['objEmpl'] = $objEmplConnecte;
+  }
+
+  echo '<pre>';
+  print_r($_SESSION['objEmpl']);
+  echo '</pre>';
+
+  var_dump($objEmplConnecte);
 ?>
 
   <div class="row">
@@ -26,10 +36,10 @@
       </thead>
       <tbody>
         <tr>
-          <td><?php echo $_SESSION['ID']; ?></td>
-          <td><?php echo $_SESSION['Nom']; ?></td>
-          <td><?php echo $_SESSION['Prenom']; ?></td>
-          <td><?php echo $_SESSION['Titre']; ?></td>
+          <td><?php echo $objEmplConnecte->getIntId(); ?></td>
+          <td><?php echo $objEmplConnecte->getStrNom(); ?></td>
+          <td><?php echo $objEmplConnecte->getStrPrenom(); ?></td>
+          <td><?php echo $objEmplConnecte->getStrTitre(); ?></td>
         </tr>
       </tbody>
     </table>

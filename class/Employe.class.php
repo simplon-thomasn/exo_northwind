@@ -111,4 +111,30 @@ class Employe
       $this->strTitre = $titre;
     }
 
+    public static function empl_cnt($inLogin, $inPass )
+    {
+      include('./includes/connexion.php');
+
+      $identification = $connexion->prepare ('
+        SELECT EmployeeID, LastName, FirstName, Title
+        FROM Employees
+        WHERE Login = :login AND Pass = :pass');
+
+      $identification->execute(
+        array(
+          'login' => $inLogin,
+          'pass' => $inPass));
+
+      if ($identification->rowCount() == 1)
+      {
+        $infosEmpl = $identification->fetch();
+
+        return $infosEmpl;
+      }
+      else
+      {
+        header("location:identification.php?msg=errauth");
+      }
+    }
+
 }
