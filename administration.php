@@ -1,9 +1,11 @@
 <?php
+  session_start();
   include ('includes/header.php');
   include ('includes/fonctions.php');
   include ('includes/messages.php');
-
-  $employees = empl_infos();
+  include_once ('class/Employe.class.php');
+  
+  $ListeEmployes = Employe::ChargerEmployes();
 ?>
 
 <div class="row">
@@ -26,17 +28,17 @@
     <tbody>
 
 <?php
-  foreach ($employees as $employee)
+  foreach ($ListeEmployes as $employe)
   {
 ?>
-      <tr id='<?php echo $employee['EmployeeID']; ?>'>
-        <td><?php echo $employee['EmployeeID']; ?></td>
-        <td><?php echo $employee['LastName']; ?></td>
-        <td><?php echo $employee['FirstName']; ?></td>
-        <td><?php echo $employee['Title']; ?></td>
-        <td><?php echo $employee['City']; ?></td>
-        <td><a class="btn btn-default" href="gestion.php?id=<?php echo $employee['EmployeeID'];?>">Gestion</a></td>
-        <td><a class="btn btn-default" href="suppression.php?id=<?php echo $employee['EmployeeID'];?>">Suppression</a></td>
+      <tr id='<?php echo $employe['EmployeeID']; ?>'>
+        <td><?php echo $employe['EmployeeID']; ?></td>
+        <td><?php echo $employe['LastName']; ?></td>
+        <td><?php echo $employe['FirstName']; ?></td>
+        <td><?php echo $employe['Title']; ?></td>
+        <td><?php echo $employe['City']; ?></td>
+        <td><a class="btn btn-default" href="gestion.php?id=<?php echo $employe['EmployeeID'];?>">Gestion</a></td>
+        <td><a class="btn btn-default" href="suppression.php?id=<?php echo $employe['EmployeeID'];?>">Suppression</a></td>
       </tr>
 <?php
   }

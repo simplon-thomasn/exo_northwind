@@ -5,6 +5,8 @@ class Employe
   private $strNom;
   private $strPrenom;
   private $strTitre;
+  private static $ListeEmployes;
+  
 
   /**
    * Get the value of Int Id
@@ -101,6 +103,8 @@ class Employe
 
       return $this;
   }
+  
+  
 
 
     public function __construct($id, $nom, $prenom, $titre)
@@ -136,5 +140,71 @@ class Employe
         header("location:identification.php?msg=errauth");
       }
     }
+
+    public static function new_empl($inNom, $inPrenom, $inTitre, $inCivilite, $inNaissance, $inEmbauche, $inAdresse, $inVille, $inRegion, $inCodepost, $inPays, $inTelephone, $inExtension, $inNotes, $inSalaire)
+    {
+      include('./includes/connexion.php');
+
+      $req_new_empl = $connexion->prepare('
+        INSERT INTO Employees
+          (LastName, FirstName, Title, TitleOfCourtesy, BirthDate, Hiredate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, Salary)
+        VALUES
+          (:nom, :prenom, :titre, :civilite, :naissance, :embauche, :adresse, :ville, :region, :codepost, :pays, :telephone, :extension, :notes, :salaire)
+        ');
+
+      $req_new_empl->execute(
+        array(
+          'nom' => $inNom,
+          'prenom' => $inPrenom,
+          'titre' => $inTitre,
+          'civilite' => $inCivilie,
+          'naissance' => $inNaissance,
+          'embauche' => $inEmbauche,
+          'adresse' => $inAdresse,
+          'ville' => $inVille,
+          'region' => $inRegion,
+          'codepost' => $inCodepost,
+          'pays' => $inPays,
+          'telephone' => $inTelephone,
+          'extension' => $inExtension,
+          'notes' => $inNotes,
+          'salaire' => $inSalaire));
+    }
+
+     
+  public static function ChargerEmployes($id = null)
+  {
+
+    include('./includes/connexion.php');
+
+    if ($id == null)
+    {
+      $req_employees = $connexion->query('
+        SELECT *
+        FROM Employees');
+
+      self::$ListeEmployes = $req_employees->fetchAll();
+
+      return self::$ListeEmployes;
+    }
+    else
+    {
+      $req_employees = $connexion->prepare('
+        SELECT *
+        FROM Employees
+        WHERE EmployeeID = :id');
+
+      $req_employees->execute(
+        array(
+          'id' => $_GET['id']));
+
+      self::$ListeEmployes = $req_employees->fetchAll();
+
+      return self::$ListeEmployes;
+    }
+
+  }
+
+
 
 }
